@@ -1,0 +1,21 @@
+#!/bin/sh
+# shellcheck disable=1090
+
+case $0 in
+    *++) cc="${0%/*}/../share/minux/bin/clang++" ;;
+    *)   cc="${0%/*}/../share/minux/bin/clang"   ;;
+esac
+
+target="${0##*/}"
+target="${target%-*}"
+
+[ -z "$_SDK" ] && _SDK="${0%/*}/../share/minux/sysroot"
+
+command -v ccache > /dev/null 2>&1 && ccache='ccache'
+
+exec $ccache "$cc" \
+    --sysroot="$_SDK" \
+    "$@" \
+    -target "$target" \
+    -Wno-unused-command-line-argument \
+    -Wno-ignored-optimization-argument
