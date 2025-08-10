@@ -95,7 +95,7 @@ ninja -j"$JOBS" install-distribution
 
 (
 cd "$pwd/minux-toolchain/share/minux"
-curl -L -# https://github.com/North-Western-Development/minux/releases/download/0.0.57/sysroot.tar.xz | tar -xJ
+curl -L -# https://github.com/North-Western-Development/minux/releases/download/0.0.58/sysroot.tar.xz | tar -xJ
 rm -rf include
 for bin in bin/* lib/*; do
     if [ ! -h "$bin" ] && [ -f "$bin" ]; then
